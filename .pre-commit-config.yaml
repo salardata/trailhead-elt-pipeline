@@ -1,0 +1,30 @@
+# Checks that run automatically on every `git commit`.
+# Install once per clone:   pre-commit install
+# Run on all files:         pre-commit run --all-files
+# Update hook versions:     pre-commit autoupdate
+
+repos:
+  # General file hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace        # remove spaces at line ends
+      - id: end-of-file-fixer          # every file ends with one newline
+      - id: check-yaml                 # YAML files must parse
+      - id: check-added-large-files    # block files over 500 KB (data belongs in S3)
+      - id: check-merge-conflict       # block leftover <<<<<<< markers
+      - id: detect-private-key         # block private keys (Snowflake, SSH)
+
+  # Secret scanning: AWS keys, tokens, passwords
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.28.0
+    hooks:
+      - id: gitleaks
+
+  # Python lint + format (runs only on .py files)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
