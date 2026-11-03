@@ -7,7 +7,7 @@
 | Python | comfortable |
 | Snowflake | comfortable |
 | Docker | none |
-| Git | none (confirm) |
+| Git | none → basics done in 0.4 |
 | AWS | none |
 | Terraform | none |
 | Airflow | none |
@@ -29,10 +29,14 @@
 - CLI sign-in: `aws login --remote` (short-lived credentials, up to 12 hours)
 - Budget: `trailhead-monthly-1usd` — $1/month, credits excluded, email alert at 80% actual (created by hand; rebuild in Terraform in Phase 2)
 - Credits: balance/expiry not yet recorded
+
+## GitHub
+- Repo: https://github.com/salardata/trailhead-elt-pipeline (public)
+- Workflow: branch → commit → push → `gh pr create --fill` → `gh pr merge --squash --delete-branch`
 - MFA: skipped by choice (can add at settings.aws.com)
 
 ## Current position
-- Phase 0, Lesson 0.4 — next (Git and repo setup)
+- **Phase 0 done** (2026-11-02). Next: Phase 0.5, Lesson 0.5.1 (containers vs VMs, first containers)
 
 ---
 
@@ -48,7 +52,7 @@ Phases are listed in the order we'll do them (DuckDB first, then Snowflake).
 | 0.1 | The big picture: how a data platform fits together | done | 2026-10-27 | ELT keeps raw data so history can be rebuilt; Airflow coordinates, it doesn't process; S3 decouples extract from load |
 | 0.2 | Install and verify tools | done | 2026-10-27 | Homebrew taps, PATH and why the shell can't find a command; system Python 3.9 vs project Python 3.12 via uv |
 | 0.3 | AWS account on the Free plan, set up safely (MFA, IAM, $1 budget) | done | 2026-11-02 | Old account is legacy paid billing; Free plan can't charge; storage costs money even when nothing runs; new AWS accounts have no root user, a fixed region, and use `aws login` for short-lived CLI credentials; budgets must exclude credits to catch usage |
-| 0.4 | Git basics, repo init, .gitignore, .env.example, pre-commit, first push | todo | | |
+| 0.4 | Git basics, repo init, .gitignore, .env.example, pre-commit, first push | done | 2026-11-02 | Staging vs commit, branches and PRs (#1, #2), noreply email, `reset --soft`; pre-commit + gitleaks block secrets; a passing check can mean the input was wrong |
 
 ### Phase 0.5 — Docker Fundamentals
 | Lesson | Title | Status | Date | What I learned |
